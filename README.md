@@ -412,7 +412,7 @@ Security concerns in HTTP/1.1 include:
 - Disclosure of Sensitive Information in URIs
 - Disclosure of Fragment after Redirects
 - Disclosure of Product Information
-- Browser Fingerprinting
+- Browser Fingerprinting</br>
 [4] 
 	
 HTTP/2 similarly runs over TLS Security while HTTP/3 implements encryption security features at the packet level, making TLS redundant [18].
