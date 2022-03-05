@@ -1,5 +1,5 @@
 # http-review
-A COMPARATIVE REVIEW OF HTTP/1.1, HTTP/2 and HTTP/3
+**A COMPARATIVE REVIEW OF HTTP/1.1, HTTP/2 and HTTP/3**
 
 The Hypertext Transfer Protocol (HTTP) was first adopted by the World-Wide Web global information initiative in 1990. The timeline across the versions has been largely sequential with each version aiming to fill the gaps in the previous one.
   - HTTP/0.x versions got the core mission up and running—a stateless application-level protocol for distributed, collaborative, hypertext information  systems. 
