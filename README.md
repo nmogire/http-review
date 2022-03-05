@@ -405,7 +405,7 @@ AUTHENTICATION AND SECURITY
     <p>     
 In HTTP/1.1, the message including all its headers are transferred in cleartext. This prompted the development of a security mechanism to protect the HTTP message. This began with the development of Secure-HTTP which authenticated the client and worked at the application layer[19]. S-HTTP involved encrypting the message with both the sender’s and the receiver’s keying material and adding the information about transformations into the header. Later, SHTTP gave way to SSL[20] which is a transport layer security protocol that authenticates the server. SSL preceded the current standard which is TLS. 
 
-- Security concerns in HTTP/1.1 include[4]. 
+Security concerns in HTTP/1.1 include:
 - Attacks Based on File and Path Names
 - Attacks Based on Command, Code, or Query Injection
 - Disclosure of Personal Information
@@ -413,8 +413,9 @@ In HTTP/1.1, the message including all its headers are transferred in cleartext.
 - Disclosure of Fragment after Redirects
 - Disclosure of Product Information
 - Browser Fingerprinting
-
-HTTP/2 similarly runs over TLS Security while HTTP/3 implements encryption security features at the packet level, making TLS redundant.[18].
+[4] 
+	
+HTTP/2 similarly runs over TLS Security while HTTP/3 implements encryption security features at the packet level, making TLS redundant [18].
 
 </p></br>
 
