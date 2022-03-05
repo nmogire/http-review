@@ -11,7 +11,6 @@ The Hypertext Transfer Protocol (HTTP) was first adopted by the World-Wide Web g
   - HTTP/3, the latest version at this writing, similarly leaves the core functioning of HTTP unchanged, but enhances framing and multiplexing and security mechanisms to add reliability and reduce message transmission latency. 
   - This section is a comparative summary of the HTTP versions from 1.1 - 3.
 
-
 <details><summary>Introduction</summary>
   <p>
 
@@ -22,12 +21,16 @@ Hypertext Transfer Protocol(HTTP) is “a stateless application-level protocol f
   Key terminologies in the HTTP specification include: connection which refers to the transport layer protocol between the client and the server. The client is the initiator of the connection while the server is the other side of that communication. The request is the HTTP initiating message while the response is the HTTP reply. The resource is any piece of data identifiable by HTTP’s Uniform Resource Identifier(URI) scheme. The scheme specifies the target resource by name, location, other properties and its relationship with other resources. The user agent is the client which can be a browser or any other end-user—facing application including command shells, mobile apps and even household appliances. [2] [3]
 
   The data exchange model used by HTTP is referred to as a client-server model. The client sends a request to a server and the server responds with the requested web resource, with the data format—HTTP version—specified in the header. The common scenario is that a web user either types a Uniform Resource Locator(URL) into the web browser search area or clicks on a URL link and the browser who is the client translates these URLs into HTTP requests and sends them to the server. The server then responds with the requested resource after accordingly fetching its components whether they are stored in one server or distributed in several locations. [1]
+	  
+```
+			User --url--> Client
+				      Client -----HTTP Request-------> Server
+								       Server <----->Data storage
+				      Client <----HTTP Response--------Server
+	    User <-parse & display--- Client
 
-   User --url--> Client
-     Client -----HTTP Request-------> Server
-   Server <----->Data storage
-           Client <----HTTP Response--------Server
-   User <-parse & display--- Client
+```
+  
 
   The client then parses the HTTP response received which may include any web resources—such as text, images, videos, scripts. The browser also parses the formatting information present in the Cascading Style Sheets(CSS) specification for the received data, allowing it to present the information to the user in an organized format.[1]
 
@@ -50,11 +53,11 @@ The earliest versions of HTTP - version 0.9 - succeeded in transferring raw data
 
 HTTP/1.1 also introduced persistent connections as a default, allowing multiple request/response exchanges. It also introduced the transfer encoding header field to record any encodings applied or intended for a message during transfer[3] . This version also introduced multi-homed web servers with the requirement that clients and servers support the Host header field, report an error if the Host header field is missing from an HTTP/1.1 request and accept absolute URIs [3].
 
-HTTP/2 was introduced mainly to improve the message transport mechanism to reduce latency, reduce protocol overhead by header compression, enable request prioritization and also support server push mechanism[ 6 ]. The protocol introduced binary framing of messages for transport, multiplexing, congestion control, flow control, parallelism, header compression and proactive response “push” by the server [ 7 ].
+HTTP/2 was introduced mainly to improve the message transport mechanism to reduce latency, reduce protocol overhead by header compression, enable request prioritization and also support server push mechanism[ 6 ]. The protocol introduced binary framing of messages for transport, multiplexing, congestion control, flow control, parallelism, header compression and proactive response “push” by the server [7].
 
 HTTP/2 is designed as an extension to its predecessor, so as to achieve its goals without altering the core functionality of HTTP/1.1. To avoid tampering with version 1.1, version 2 introduces a framing layer under the HTTP component but within the application layer for message formatting into frames, and for its other functions [ 7 ] . This version of HTTP is based on the SPDY protocol. Before adoption by HTTP, the SPDY protocol was designed to transport content at low latency on the web. In order to interoperate with HTTP, it was designed with two layers —the upper one to integrate with HTTP application servers, and the lower one for framing, multiplexing, compression prioritization [8].
 
-HTTP/3  [16] is the latest version of this protocol. It was adapted from the QUIC protocol and has only recently—in 2018—been renamed to HTTP. This version builds upon HTTP/2 semantics. It improves parallelism by introducing per-stream multiplexing and flow control thereby introducing reliability to each stream separately. It also incorporates TLS 1.3 and reduces connection setup latency.[ 9 ].
+HTTP/3  [16] is the latest version of this protocol. It was adapted from the QUIC protocol and has only recently—in 2018—been renamed to HTTP. This version builds upon HTTP/2 semantics. It improves parallelism by introducing per-stream multiplexing and flow control thereby introducing reliability to each stream separately. It also incorporates TLS 1.3 and reduces connection setup latency.[9].
 
 The next section compares the features of the three versions HTTP/1.1, HTTP/2 and HTTP/3 in more detail.
 
@@ -71,7 +74,7 @@ In contrast, HTTP/2 is a binary protocol. Its messaging is intended to be read b
 
 It avoids tampering with HTTP/1 elements by introducing a framing layer that allows for the additional functions to be carried out without interfering with the HTTP elements above it or the transport layer(TCP) below it [12]. The binary formatting of HTTP/2 makes it more compact and less susceptible to error. This allows HTTP/2 messages to be parsed in one uniform method compared to its predecessor which needs multiple methods to parse a message due to extraneous elements [ 7] . 
 
-
+```
 +-----------------------------------------------+
  |                 Length (24)                   |
  +---------------+---------------+---------------+
@@ -81,8 +84,8 @@ It avoids tampering with HTTP/1 elements by introducing a framing layer that all
  +=+=============================================================+
  |                   Frame Payload (0...)                      ...
  +---------------------------------------------------------------+
-
-Figure 1: Frame Layout in HTTP/2 -  [ 7 ]. 
+```
+Figure 1: Frame Layout in HTTP/2 - [7]. 
 
 
 HTTP/3 is a transport optimization protocol. It builds on the HTTP/2 framing system and also adopts the multiplexing and flow control features of its predecessor. It adds congestion control, reliability, security—moves to TLS 1.3— as well as adds per-stream multiplexing so that messages on different streams do not interfere with each other. Due to this added reliability, it runs on UDP[ 12 ] which reduces connection setup latency and also message transfer latency. One might view the per stream multiplexing over UDP as having multiple small TCP-like connections. 
@@ -90,15 +93,17 @@ HTTP/3 is a transport optimization protocol. It builds on the HTTP/2 framing sys
 One key difference between the two versions is that while HTTP/2 provides an absolute ordering of frames spanning across all streams, QUIC  does the ordering per each stream separately. QUIC uses frames in the control stream, request streams and push streams. [ 13 ].
 
 Each QUIC frame includes a length field for payload length, type field for the frame type and a payload segment. A frame not containing exactly the expected number of octets is treated as a connection error i.e. HTTP_MALFORMED_FRAME.
+	
+```
   0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                           Length (i)                        ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   |    Type (8 octects)   |               Frame Payload (*)             ...
+   |    Type (8 octects)   |               Frame Payload (*)     ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-   Figure: HTTP/QUIC frame- [ 13 ]
+```
+   Figure 2: HTTP/QUIC frame- [13]
 
 </p></br>
   
@@ -107,13 +112,16 @@ HEADER FORMAT
     Allows client and server to exchange additional information about resource involved in a connection or about the connection, or the participants. This information is contained within the header fields. In HTTP 1.1, each field in the header has a name and a value separated by a colon. Names are case insensitive. Fields may be spread over multiple lines, each additional line beginning with an SP(space) or HT. HTTP/1.x, headers are transferred in plain text format. [ 14 ]
 
 Example formulation
-     	 message-header = field-name ":" [ field-value ]
-       field-name     = token
-       field-value    = *( field-content | LWS )
-       field-content  = <the OCTETs making up the field-value
-                        and consisting of either *TEXT or combinations
-                        of token, separators, and quoted-string>
-Source: in RFC 2616 [ 14 ]
+	
+```
+	message-header = field-name ":" [ field-value ]
+	field-name     = token
+	field-value    = *( field-content | LWS )
+	field-content  = <the OCTETs making up the field-value
+			  and consisting of either *TEXT or combinations
+			   of token, separators, and quoted-string>
+```
+Figure 3: RFC 2616[14]
 
 There are four types of header fields in HTTP/1.1: General-header, entity-header, request header, response-header. Each of these is extensible. 
 
@@ -138,26 +146,30 @@ The compression encoding scheme changes in HTTP/3 to a variant of HPACK known as
 
 QPACK allows for correct out-of-order delivery. It preserves ordering of header fields within each header field list during encoding and in turn the encoded ordering is maintained by the decoder. This variant maintains the same reference tables as in HPACK but here the table entries are addressed separately. [ 15 ].
 
-
-    0                   1                   2                   3
+```
+  0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                       Header Block (*)                      ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
+ Figure 4: HEADERS frame payload -  [17] 
 
-     Figure 5: HEADERS frame payload -  [ 17 ] 
-
-   HEADERS frames are only sent on request streams or push streams.
+HEADERS frames are only sent on request streams or push streams.
     
   </p></br>
     
 MESSAGE STRUCTURE
     <p>
-    HTTP/1.1 Message format is as follows:
-message   = start-line
-                      *( header-field CRLF )
-                      CRLF //text line break
-                      [ message-body ]
+HTTP/1.1 Message format is as follows:
+	
+```
+	message   = start-line
+		   *( header-field CRLF )
+		    CRLF //text line break
+		    [ message-body ]
+```
+
 
 Start line: If the message is a request, then the start line is a request line. If message is a response, then the start line is a status line.
 start-line  = request-line / status-line
@@ -173,6 +185,7 @@ Message body length - If transfer-encoding is present and its value is not ident
 
 HTTP/2 maintains the HTTP/1.1 message request and response semantics but provides an alternative syntax [ 7 ] . DATA frames contain arbitrary, variable-length sequences of octets associated with a stream. Padding may be added to the data frame as a security feature to hide the message size. Data frames also contain flags and error codes to indicate the status of the stream or the data. Data frames should only be sent if the connection is either open or half closed. They are subject flow control. [16].
 
+```
    +---------------+
     |Pad Length? (8)|
     +---------------+-----------------------------------------------+
@@ -180,12 +193,14 @@ HTTP/2 maintains the HTTP/1.1 message request and response semantics but provide
     +---------------------------------------------------------------+
     |                           Padding (*)                       ...
     +---------------------------------------------------------------+
+```
+  Figure 5: DATA Frame Payload - [16] 
 
-                       Figure 6: DATA Frame Payload -  [16] 
 
 
 HTTP/3 messages are sent in packets. After the packet protection is removed, the payload consisting of a sequence of frames is retrieved. Packets contain at least one frame and may have multiple frames and frame types. The exceptions are: Version Negotiation, Stateless Reset, and Retry packets which do not contain frames[ 17 ]. 
 
+```
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
@@ -197,18 +212,19 @@ HTTP/3 messages are sent in packets. After the packet protection is removed, the
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                          Frame N (*)                        ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-    Figure 8: QUIC Payload - [12]
+```
+    Figure 6: QUIC Payload - [12]
 
 Each data frame must be part of a specific request or response and must not be received on a control stream.
-
+	
+```
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |                         Payload (*)                         ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-    Figure 4: DATA frame payload - [ 12] 
+```
+    Figure 7: DATA frame payload - [12] 
 
 Other Frame Types
 PRIORITY frames can be used by a sender to advise on priority but must only be sent through the control stream. The GOAWAY frame is sent by a server to initiate a connection shutdown, after which it can stop accepting new requests and process only received ones. These frames can be used to make way for administrative actions like server maintenance. Clients do not send GOAWAY frames but rather they initiate a shutdown by stopping to make requests. Clients can send a MAX_PUSH_ID frame to limit the number of pushes from a server. To specify that unknown frame types be ignored, reserved frames can be used [12]
@@ -223,13 +239,15 @@ HTTP/2 allows for pre-emptive responses to be sent together with corresponding P
 
 Similarly, HTTP3 also allows for server push via a push stream. A server can push a promised request header to a client via a PUSH_PROMISE frame. A push stream header is used:
 
+```
     0                   1                   2                   3
     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
    |Stream Type (8)|                  Push ID (i)                ...
    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-                       Figure 2: Push Stream Header - [ 13 ]
+```
+Figure 8: Push Stream Header - [13]
     
   </p></br>
   
@@ -237,9 +255,9 @@ Similarly, HTTP3 also allows for server push via a push stream. A server can pus
 SAMPLE EXCHANGE UNDER EACH OF THE 3 PROTOCOL VERSIONS  
   
    <p>
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-     Example of HTTP/1.1 Message Exchange from rfc[3]:
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+Example of HTTP/1.1 Message Exchange from rfc[3]:
+```
 For a GET request (Section 4.3.1 of [RFC7231]) on the URI "http://www.example.com/hello.txt":
 
    Client request:
@@ -260,10 +278,10 @@ For a GET request (Section 4.3.1 of [RFC7231]) on the URI "http://www.example.co
      Content-Type: text/plain
 
      Hello World! My payload includes a trailing CRLF.
+```
 
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-  Example of HTTP/2 Exchange from rfc7540: [16]
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Example of HTTP/2 Exchange from rfc7540: [16]
+```
 GET REQUEST,
 GET /resource HTTP/1.1           HEADERS
      Host: example.org          ==>      + END_STREAM
@@ -292,11 +310,12 @@ POST REQUEST
                                      	       + END_STREAM
                                     	      {binary data}
 
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-  Example of HTTP/3 Handshake: [ 12 ]
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
 
-   Client                                     	             Server
+Example of HTTP/3 Handshake: [12]	
+```
+
+   Client                                     	           Server
 
    Initial[0]: CRYPTO[CH] ->
 
@@ -312,7 +331,7 @@ POST REQUEST
                                           <- Handshake[1]: ACK[0]
 
          Example of 1-RTT Handshake
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+```
 
 After each of these handshakes, packets can be exchanged.
     
