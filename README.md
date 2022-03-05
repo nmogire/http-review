@@ -421,28 +421,26 @@ There are several other features not covered in this comparative review includin
 </details>
 
 <details><summary>References</summary>
-<p>    
-  
-- https://www.w3.org/Protocols/HTTP/1.0/spec.html#Purpose
-  https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
-- https://tools.ietf.org/html/rfc7230 
-- https://tools.ietf.org/html/rfc7231
-- https://tools.ietf.org/html/rfc1945 
-- https://hpbn.co/http2/
-- https://http2.github.io/
-- https://tools.ietf.org/html/draft-mbelshe-httpbis-spdy-00
-- https://quicwg.org/base-drafts/draft-ietf-quic-http.html
-- https://en.wikipedia.org/wiki/Text-based_protocol
-- https://en.wikipedia.org/wiki/Binary_protocol 
-- https://tools.ietf.org/html/draft-ietf-quic-http-16#page-4
-- https://tools.ietf.org/html/draft-ietf-quic-http-16#page-10 
-- https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.4
-- https://tools.ietf.org/html/draft-ietf-quic-qpack-03
-- https://tools.ietf.org/html/rfc7540
-- https://tools.ietf.org/html/draft-ietf-quic-transport-16 
-- https://tools.ietf.org/html/draft-ietf-quic-transport-16#ref-QUIC-TLS 
-- https://www.ietf.org/rfc/rfc2660.txt
-- https://www.pcmag.com/encyclopedia/term/51302/shttp
+1. https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview </br>
+2. https://www.w3.org/Protocols/HTTP/1.0/spec.html#Purpose </br>
+3. https://tools.ietf.org/html/rfc7230 </br>
+4. https://tools.ietf.org/html/rfc7231 </br>
+5. https://tools.ietf.org/html/rfc1945 </br>
+6. https://hpbn.co/http2/ </br>
+7. https://http2.github.io/ </br>
+8. https://tools.ietf.org/html/draft-mbelshe-httpbis-spdy-00 </br>
+9. https://quicwg.org/base-drafts/draft-ietf-quic-http.html </br>
+10. https://en.wikipedia.org/wiki/Text-based_protocol </br>
+11. https://en.wikipedia.org/wiki/Binary_protocol </br>
+12. https://tools.ietf.org/html/draft-ietf-quic-http-16#page-4 </br>
+13. https://tools.ietf.org/html/draft-ietf-quic-http-16#page-10 </br>
+14. https://www.w3.org/Protocols/rfc2616/rfc2616-sec4.html#sec4.4 </br>
+15. https://tools.ietf.org/html/draft-ietf-quic-qpack-03 </br>
+16. https://tools.ietf.org/html/rfc7540 </br>
+17. https://tools.ietf.org/html/draft-ietf-quic-transport-16  </br>
+18. https://tools.ietf.org/html/draft-ietf-quic-transport-16#ref-QUIC-TLS </br>
+19. https://www.ietf.org/rfc/rfc2660.txt </br>
+20. https://www.pcmag.com/encyclopedia/term/51302/shttp </br>
   
   -- the end --
 </p>
