@@ -2,14 +2,14 @@
 **A COMPARATIVE REVIEW OF HTTP/1.1, HTTP/2 and HTTP/3**
 
 The Hypertext Transfer Protocol (HTTP) was first adopted by the World-Wide Web global information initiative in 1990. The timeline across the versions has been largely sequential with each version aiming to fill the gaps in the previous one.
-  - HTTP/0.x versions got the core mission up and running—a stateless application-level protocol for distributed, collaborative, hypertext information  systems. 
+  - HTTP/0.x versions got the core mission up and running—a stateless application-level protocol for distributed, collaborative, hypertext information systems. 
   - HTTP/1.x solved numerous details including the need for persistent connections and name-based virtual hosts. 
   This version became extremely successful and essentially established the modern world wide web. 
-  - S-HTTP was an encryption-enabled enhancement of HTTP/1.x which later led to the encryption layer standard, Secure Sockets Layer(SSL). SSL in turn gave way to Transport Layer Security(TLS). 
+  - S-HTTP was an encryption-enabled enhancement of HTTP/1.x which later led to the encryption layer standard, Secure Sockets Layer(SSL) standard. SSL in turn gave way to Transport Layer Security(TLS). 
   - HTTP/2, was born out of the need for efficiency in message parsing and latency reduction in version HTTP/1.x 
-  This version introduced binary message framing, multiplexing and other extensions while leaving the core functioning of the HTTP protocol unchanged. 
-  - HTTP/3, the latest version at this writing, similarly leaves the core functioning of HTTP unchanged, but enhances framing and multiplexing and security mechanisms to add reliability and reduce message transmission latency. 
-  - This section is a comparative summary of the HTTP versions from 1.1 - 3.
+  This version introduced binary message framing, multiplexing and other extensions. The core functioning of the HTTP protocol remained unchanged. 
+  - HTTP/3, the latest version at this writing, enhances framing and multiplexing as well as security mechanisms to add reliability and reduce message transmission latency. 
+  - This writing is a comparative summary of the HTTP versions from 1.1 - 3.
 
 <details><summary>Introduction</summary>
   <p>
